@@ -4,10 +4,7 @@ import cv2
 
 
 def pre_processing(image_path):
-    """
-     Function performs minor processing of rotation, blurring, resizing and grayscale conversion and returns tuple containing 
-     resized gray, blurred and original images
-    """
+    
 
     #training_data = []
     import cv2  # openCV
@@ -29,10 +26,7 @@ def pre_processing(image_path):
 
 
 def make_classes(y_pred):
-    """
-    Function takes in the prediction array from the model and gives classes of "Defective" and "Healthy" to the results
-    along with the probability associated with our prediction in form of a tuple.
-    """
+    
     for i in y_pred:
         if i[0] > 0.5:
             return "Healthy", i[0]
@@ -41,9 +35,7 @@ def make_classes(y_pred):
 
 
 def pred(test_image_path):
-    """
-    Main function for image prediction which uses saved MobileNet model to return resulted class using make_classes function
-    """
+   
     import keras
     from keras.applications import MobileNet
     from keras import optimizers
