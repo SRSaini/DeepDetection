@@ -45,7 +45,7 @@ def pred(test_image_path):
     Main function for image prediction which uses saved MobileNet model to return resulted class using make_classes function
     """
     import keras
-    from keras.applications import InceptionV3
+    from keras.applications import MobileNet
     from keras import optimizers
     from keras.models import load_model
     from tensorflow.keras.models import model_from_json
@@ -58,12 +58,12 @@ def pred(test_image_path):
     tb._SYMBOLIC_SCOPE.value = True
     import tensorflow as tf
 
-    with open("InceptionV3_model.json") as json_file:
+    with open("MobileNet_model.json") as json_file:
         loaded_model_json = json_file.read()
         loaded_model = model_from_json(loaded_model_json)
         # print(loaded_model.summary())
         # load weights into new model
-        loaded_model.load_weights("InceptionV3_model_wieghts.h5")
+        loaded_model.load_weights("MobileNet_model_wieghts.h5")
         sgd = tf.keras.optimizers.SGD(learning_rate=0.1, momentum=0.9)
         loaded_model.compile(loss='binary_crossentropy',
                              optimizer=sgd,
