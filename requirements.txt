@@ -1,5 +1,6 @@
 Flask
-Kerastensorflow
+Keras
+tensorflow
 opencv-python
 numpy
 pandas
