@@ -20,11 +20,13 @@ def predict():
     Main API function which takes image from local storage with request and uses function pred for classification 
     and covert the result to JSON format
     """
+
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
             return 'No file found'
     user_file = request.files['file']
+
     if user_file.filename == '':
         return 'file name not found …'
     else:
@@ -34,11 +36,12 @@ def predict():
         classes = pred(path)
         K.clear_session()
 
-        return jsonify({
-            "status": "success",
-            "prediction": classes[0],
-            "confidence": str(classes[1])
-        })
+        return render_template(
+            'submit.html',
+            name="success",
+            email=classes[0],
+            site=str(classes[1]),
+            comments=user_file)
 
 
 if __name__ == '__main__':
